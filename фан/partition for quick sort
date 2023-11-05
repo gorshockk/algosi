@@ -1,0 +1,25 @@
+static void partition(int[] a)
+{
+    int k,n,j,f,g; k = a[a.Length - 1];n = a.Length;j = -1;f = 0;g = 0;
+   for (int i = 0;i<n;i++)
+    {
+        if (k > a[i])
+        {
+            j++;
+            f = a[i];
+            a[i] = a[j];
+            a[j] = f;
+        }
+    }
+    g = a[j + 1];
+    a[j+1] = k;
+    a[n - 1] = g;
+    foreach(int i in a) { Console.Write("{0} ",i); }
+}
+string[] inp = Console.ReadLine().Split();
+int[] mass= new int[inp.Length];
+for (int i = 0;i<mass.Length;i++)
+{
+    mass[i]= int.Parse(inp[i]);
+}
+partition(mass);
