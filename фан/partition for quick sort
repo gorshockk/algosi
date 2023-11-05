@@ -1,6 +1,6 @@
-static void partition(int[] a)
+static void partition(int[] a,int p)//введите сам массив и индекса опорного эл-та(с которым будут сравнивать)
 {
-    int k,n,j,f,g; k = a[a.Length - 1];n = a.Length;j = -1;f = 0;g = 0;
+    int k,n,j,f,g; k = a[p];n = a.Length;j = -1;f = 0;g = 0;
    for (int i = 0;i<n;i++)
     {
         if (k > a[i])
@@ -9,11 +9,12 @@ static void partition(int[] a)
             f = a[i];
             a[i] = a[j];
             a[j] = f;
+            p = i;
         }
     }
     g = a[j + 1];
     a[j+1] = k;
-    a[n - 1] = g;
+    a[p] = g;
     foreach(int i in a) { Console.Write("{0} ",i); }
 }
 string[] inp = Console.ReadLine().Split();
@@ -22,4 +23,4 @@ for (int i = 0;i<mass.Length;i++)
 {
     mass[i]= int.Parse(inp[i]);
 }
-partition(mass);
+partition(mass,2);
