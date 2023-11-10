@@ -1,0 +1,19 @@
+Console.WriteLine("Введи знач массива через пробел");
+string[] inp = Console.ReadLine().Split();
+int n,k,max;n = 0;k = 0; 
+int[] mass=new int[inp.Length];
+int[] masska = new int[mass.Length];
+for (int i = 0; i < inp.Length; i++)
+{
+    mass[i] = int.Parse(inp[i]);
+}
+max = -1000000;
+for(int i = 0;i < mass.Length;i++)
+{
+    if (mass[i]==mass.Max())
+    {
+        masska[k] = i;
+        Console.Write("{0} ",masska[k]);
+        k++;
+    }
+}
