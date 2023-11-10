@@ -1,0 +1,28 @@
+Console.WriteLine("Введи знач массива через пробел с незначащим нулем в конце");
+string[] inp = Console.ReadLine().Split();
+int n, k; n = 0; k = 0;
+int[] mass = new int[inp.Length];
+for (int i = 0; i < inp.Length; i++)
+{
+    mass[i] = int.Parse(inp[i]);
+}
+for (int i=0;i<mass.Length-2;i++)
+{
+    if (mass[i]<0)
+    {
+        int max; max = mass[i];
+        int imax; imax = i;
+        for (int j = i + 1; j < mass.Length - 1; j++)
+        {
+            if (mass[j] > max && mass[j] <0)
+            {
+                max = mass[j];
+                imax = j;
+            }
+        }
+        mass[imax] = mass[i];
+        mass[i] = max;
+    }
+}
+Console.WriteLine("Итоговый массив:");
+foreach (int i in mass) { Console.Write("{0} ", i); }
