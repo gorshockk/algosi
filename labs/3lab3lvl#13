@@ -1,0 +1,22 @@
+Console.WriteLine("Введите значения массива");
+string[] inp = Console.ReadLine().Split();
+
+int n, z,flag; n = 0; z = 0;flag = 0;
+int[] mass = new int[inp.Length];
+for (int i = 0; i < inp.Length; i++)
+{
+    mass[i] = int.Parse(inp[i]);
+}
+Console.WriteLine("Введите кол-во уникальных элементов");
+int p = int.Parse(Console.ReadLine());
+int[]a=new int[p];
+for (int i = 0; i < mass.Length; i++)
+{
+    flag = 0;
+    for(int j=0;j<a.Length; j++)
+    {
+        if (mass[i] == a[j]) { flag = 1;break; }
+    }
+    if (flag == 0) { a[z] = mass[i];z++; }
+}
+foreach (int i in a) { Console.Write("{0}", i); }
