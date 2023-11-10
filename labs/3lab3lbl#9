@@ -1,0 +1,41 @@
+Console.WriteLine("Введи знач массива через пробел ");
+string[] inp = Console.ReadLine().Split();
+int n, k, max_k, max_n; n = 1; k = 1; max_k = 0; max_n = 0;
+int[] mass = new int[inp.Length];
+for (int i = 0; i < inp.Length; i++)
+{
+    mass[i] = int.Parse(inp[i]);
+}
+for (int i = 0; i < mass.Length - 1; i++)
+{
+    if (mass[i] >= mass[i + 1])
+    {
+        if (mass[i] > mass[i + 1])
+        {
+            if (n > max_n) { max_n = n; n = 1; }
+            k++;
+        }
+        if(mass[i] ==mass[i + 1])
+        {
+            if (n > max_n) { max_n = n;  }
+            k++;
+        }
+    }
+    if (mass[i] <= mass[i+1])
+    {
+        if (mass[i] < mass[i + 1])
+        {
+            if (k > max_k) { max_k = k; k = 1; }
+            n++;
+        }
+        if (mass[i] == mass[i + 1])
+        {
+            if (k > max_k) { max_k = k;  }
+            n++;
+        }
+    }
+}
+if (n > max_n) { max_n = n; }
+if (k > max_k) { max_k = k; }
+if (max_n >= max_k) { Console.WriteLine("Максимальная последователность {0} ", max_n); }
+if (max_n < max_k) { Console.WriteLine("Максимальная последователность {0}", max_k); }
