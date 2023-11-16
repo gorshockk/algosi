@@ -1,0 +1,33 @@
+﻿using System;
+
+namespace Lab1
+{
+    internal class Program3_2 // 7
+    {
+        static void Main(string[] args)
+        {
+            double a = 0.1;
+            double b = 1.0;
+            double h = 0.1;
+
+            for (double x = a; x <= b; x += h)
+            {
+                double answ = 1.0;
+                double term = 1.0;
+                double power = 2.0;
+
+                int i = 0;
+                while (term >= 0.0001)
+                {
+                    term = term * (x * x) / (power * (power - 1));
+                    answ += term;
+
+                    power += 2;
+                    i++;
+                }
+
+                Console.WriteLine($"{answ:0.0000}, {(Math.Exp(x)+Math.Exp(-x))/2.0:0.0000}");
+            }
+        }
+    }
+}
