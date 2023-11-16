@@ -1,6 +1,6 @@
 Console.WriteLine("Введи знач массива через пробел ");
 string[] inp = Console.ReadLine().Split();
-int n, k,max_k,max_n; n = 0; k = 0;max_k = 0;max_n = 0;
+int n, k, max_k, max_n; n = 0; k = 0; max_k = 0; max_n = 0;
 int[] mass = new int[inp.Length];
 for (int i = 0; i < inp.Length; i++)
 {
@@ -8,13 +8,13 @@ for (int i = 0; i < inp.Length; i++)
 }
 foreach (int i in mass)
 {
-    if (i < 0) { k++; }
+    if (i >= 0) { k++; }
 }
 int[] a = new int[k];
-for (int i = 0;i < mass.Length;i++)
+for (int i = 0; i < mass.Length; i++)
 {
     if (n == k) { break; }
-    if (mass[i] < 0) { a[n] = mass[i]; n++; }
+    if (mass[i] >= 0) { a[n] = mass[i]; n++; }
 }
 Console.WriteLine("Итоговый массив");
-foreach (int i in a) { Console.Write("{0} ",i); }
+foreach (int i in a) { Console.Write("{0} ", i); }
