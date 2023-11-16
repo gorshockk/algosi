@@ -1,0 +1,37 @@
+﻿using System;
+
+namespace Lab1
+{
+    internal class Program3_1
+    {
+        static void Main(string[] args)
+        {
+            double a = 0.1;
+            double b = 1.0;
+            double h = 0.1;
+
+            for (double x = a; x<=b; x += h)
+            {
+                double cosine = 1.0;
+                double term = 1.0;
+                double sign = -1.0;
+                double power = 2.0;
+                double factorial = 2.0;
+
+                int i = 0;
+                while (term >= 0.0001)
+                {
+                    term = term * (x * x) / (power * (power - 1));
+                    cosine += sign * term;
+
+                    sign *= -1;
+                    power += 2;
+                    factorial *= (power - 1) * power;
+                    i++;
+                }
+
+                Console.WriteLine($"{cosine:0.0000}, {Math.Cos(x):0.0000}");
+            }
+        }
+    }
+}
