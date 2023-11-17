@@ -1,11 +1,4 @@
-﻿using System;
 
-namespace Lab1
-{
-    internal class Program3_2 // 7
-    {
-        static void Main(string[] args)
-        {
             double a = 0.1;
             double b = 1.0;
             double h = 0.1;
@@ -28,6 +21,3 @@ namespace Lab1
 
                 Console.WriteLine($"{answ:0.0000}, {(Math.Exp(x)+Math.Exp(-x))/2.0:0.0000}");
             }
-        }
-    }
-}
