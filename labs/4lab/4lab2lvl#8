@@ -1,1 +1,54 @@
 
+int[,] a =
+{
+    {1,2,3,4,5,6 },
+    {8, 9, 1, 1, 1, 5,},
+    {2, 0, 4, 5, 3, 1},
+    {1, 5, 5, 70, 6, 6},
+    {1, 2, 3, 4, 3, 6},
+    {1,4,8,1,4,0 }
+};
+string s;
+Console.WriteLine("Исходная матрица");
+for (int i = 0; i < 6; i++)
+{
+    for (int j = 0; j < 6; j++)
+    {
+        Console.Write("{0} ", a[i, j]);
+    }
+    Console.WriteLine();
+}
+int k, max_1,max_2,max_id_1,max_id_2; max_1 = 0;k = 0;max_id_1 = 0;max_2 = 0;max_id_2 = 0;
+for(int i = 0; i < 6;i++)
+{
+    if (a[0, i] > max_1) { max_1 = a[0, i];max_id_1 = i; }
+    if (a[1, i] > max_2) { max_2 = a[1, i]; max_id_2 = i; }
+}
+a[0, max_id_1] = max_2;
+a[1, max_id_2] = max_1;
+/*---------------------------------------*/
+max_1 = 0; k = 0; max_id_1 = 0; max_2 = 0; max_id_2 = 0;
+for (int i = 0; i < 6; i++)
+{
+    if (a[2, i] > max_1) { max_1 = a[2, i]; max_id_1 = i; }
+    if (a[3, i] > max_2) { max_2 = a[3, i]; max_id_2 = i; }
+}
+a[2, max_id_1] = max_2;
+a[3, max_id_2] = max_1;
+/*-----------------------------------------*/
+max_1 = 0; k = 0; max_id_1 = 0; max_2 = 0; max_id_2 = 0;
+for (int i = 0; i < 6; i++)
+{
+    if (a[4, i] > max_1) { max_1 = a[4, i]; max_id_1 = i; }
+    if (a[5, i] > max_2) { max_2 = a[5, i]; max_id_2 = i; }
+}
+a[4, max_id_1] = max_2;
+a[5, max_id_2] = max_1;
+/*----------------------------------------------*/
+Console.WriteLine("Результат");
+for (int i = 0; i < 6; i++)
+{
+    for (int j = 0; j < 6; j++)
+    { Console.Write("{0} ", a[i, j]); }
+    Console.WriteLine();
+}
