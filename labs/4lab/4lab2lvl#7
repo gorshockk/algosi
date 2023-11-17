@@ -1,0 +1,44 @@
+using System.ComponentModel.DataAnnotations;
+
+int[,] a =
+{
+    {1,2,3,4,5,6 },
+    {8, 9, 1, 1, 1, 5,},
+    {2, 0, 4, 5, 3, 1},
+    {1, 5, 5, 70, 6, 6},
+    {1, 2, 3, 4, 3, 6},
+    {1,4,8,1,4,0 }
+};
+int[] b = { 1,1,1,1,1};
+string s;
+Console.WriteLine("Исходная матрица");
+for (int i = 0; i < 6; i++)
+{
+    for (int j = 0; j < 6; j++)
+    {
+        Console.Write("{0} ", a[i, j]);
+    }
+    Console.WriteLine();
+}
+int k, max,max_id;max = 0;k = 0;max_id = 0;
+for(int i = 0; i < 6;i++)
+{
+    if (a[i, i] > max) { max = a[i, i];max_id = i; }
+}
+int h;h = max_id;
+for(int j=max_id-1; j>=0; j--)
+{
+    for(int i = 0;i < 6;i++)
+    {
+        if (i >= h) { a[j, i] = 0; }
+    }
+    h--;
+}
+
+    Console.WriteLine("Результат");
+for (int i = 0; i < 6; i++)
+{
+    for (int j = 0; j < 6; j++)
+    { Console.Write("{0} ", a[i, j]); }
+    Console.WriteLine();
+}
