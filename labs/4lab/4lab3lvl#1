@@ -1,0 +1,51 @@
+void stroki(int[,] a, int k, int p)
+{
+    int b;
+    for (int i = 0; i < 5; i++)
+    {
+        b = a[p, i];
+        a[p, i] = a[k, i];
+        a[k, i] = b;
+    }
+}
+void print(int[,] a, int k, int m)
+{
+    for (int i = 0; i < k; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            Console.Write(a[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+
+int[,] a = {
+    {1,2,3,-4,5 },
+    {10,80,90,30,50 },
+    {9,2,3,2,4 },
+    {3,2,1,0,1 },
+    {4,0,9,5,6 },
+    {3,2,1,0,1 },
+    {1,5,7,9,4 },
+};
+int min,k, min_max, id, min_max_id; min = 1000; min_max = -100; id = 0; min_max_id = 0;k = 0;
+Console.WriteLine("Исходная матрица");
+print(a, 7, 5);
+for (int h = 0; h < 7; h++)
+{
+    min_max = -1000; 
+    for (int i = h; i < 7; i++)
+    {
+        min = 1000;
+        for (int j = 0; j < 5; j++)
+        {
+            if (a[i, j] < min) { min = a[i, j]; }
+        }
+        if (min > min_max) { min_max = min; min_max_id = i;  }
+    }
+    stroki(a, h, min_max_id);
+}
+Console.WriteLine("Результат");
+print(a, 7, 5);
