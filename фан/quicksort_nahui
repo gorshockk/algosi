@@ -1,0 +1,25 @@
+static void quicksort(int[] a, int left, int right)
+{
+    if (left < right)
+    {
+        int part = partion(a, left, right);
+        quicksort(a, left, part - 1);
+        quicksort(a, part+1,right);
+    }
+}
+static int partion(int[]a,int left,int right)
+{
+    int i= left - 1;
+    int pivot = a[right];
+    for(int j=left;j<right;j++)
+    {
+        int k;
+        if (a[j] < pivot) { i++; k = a[i]; a[i] = a[j]; a[j] = k; }
+    }
+    int g;
+    g = a[i+1];
+    a[i + 1] = pivot;
+    a[right] = g;
+    return i+1;
+}
+
