@@ -1,0 +1,57 @@
+void  BubbleSort(int[,]a,int i,int j)
+{
+        for (int l = 0; l < j; l+=2)
+        {
+            for (int m = l + 2; m < j; m+=2)
+            {
+                if (a[i, l] < a[i, m]) { int k; k = a[i, l]; a[i, l] = a[i, m]; a[i, m] = k; }
+            }
+        }
+}
+void BubbleSort_naoborot(int[,] a, int i, int j)
+{
+    for (int l = 1; l < j; l += 2)
+    {
+        for (int m = l + 2; m < j ; m += 2)
+        {
+            if (a[i, l] > a[i, m]) { int k; k = a[i, l]; a[i, l] = a[i, m]; a[i, m] = k; }
+        }
+    }
+}
+
+static int[] matrix_mass(int[,]b,int f,int j)
+{
+    int[]k= new int[j];
+        for(int l=0;l<j;l++) { k[l] = b[f,l]; }
+    return k;
+}
+void print(int[,] a, int k, int m)
+{
+    for (int i = 0; i < k; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            Console.Write(a[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+/*-----------------------------------------*/
+int[,] matrix = {
+    {5,4,3,2,1,3 },
+    {8,9,2,3,10 ,3},
+    { 2,6,8,1,2, 8},
+    {3,5,8,1,9 ,9},
+    {2,2,5,-4,2,5 }
+};
+Console.WriteLine("Исходная матрица");
+print(matrix, 5, 6);
+for (int i = 0; i < 5; i++)
+{
+    BubbleSort(matrix, i, 6);
+    BubbleSort_naoborot(matrix, i, 6);
+}
+Console.WriteLine("Результат");
+print(matrix, 5, 6);
+
+
