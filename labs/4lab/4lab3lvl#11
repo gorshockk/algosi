@@ -1,0 +1,50 @@
+
+
+static int[] matrix_mass(int[,]b,int f,int j)
+{
+    int[]k= new int[j];
+        for(int l=0;l<j;l++) { k[l] = b[f,l]; }
+    return k;
+}
+void print(int[,] a, int k, int m)
+{
+    for (int i = 0; i < k; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            Console.Write(a[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+/*-----------------------------------------*/
+int[,] matrix = {
+    {5,4,3,2,0,3 },
+    {8,9,2,0,10 ,3},
+    { 2,6,8,1,2, 8},
+    {3,5,8,0,9 ,9},
+    {2,2,2,-4,2,5 }
+};
+int flag = 1;
+Console.WriteLine("Исходная матрица");
+print(matrix, 5, 6);
+Console.WriteLine("Результат");
+for(int i = 0;i<5;i++)
+{
+    flag = 1;
+    for (int j = 0;j<6;j++)
+    {
+        if (matrix[i,j] == 0) { flag = 0; }
+        
+    }
+    if (flag==1)
+    {
+        for (int k = 0; k < 6; k++)
+        {
+            Console.Write(matrix[i,k]+" ");
+        }
+        Console.WriteLine();
+    }
+}
+
+
