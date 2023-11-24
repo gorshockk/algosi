@@ -6,7 +6,8 @@ int[,] a =
     {1, 5, 5, -7, 6, -6, -5, 0},
     {1, 2, -3, 4, 3, 6, 8, 0},
 };
-int[] b = { 1,1,1,1,1};
+
+int[] b = { 1, 1, 1, 1, 1 };
 string s;
 Console.WriteLine("Исходная матрица");
 for (int i = 0; i < 5; i++)
@@ -18,14 +19,24 @@ for (int i = 0; i < 5; i++)
     Console.WriteLine();
 }
 int k, min, min_id; k = 0; min = 10000; min_id = 0;
-for(int i = 0; i < 7;i++)
+for (int i = 0; i < 7; i++)
 {
-    if (a[4,i] < min) {  min = a[4,i]; min_id = i ; }
+    if (a[4, i] < min) { min = a[4, i]; min_id = i; }
 }
-for(int i=0; i < 5;i++)
+for (int i = 0; i < 5; i++)
 {
-    a[i, 7] = a[i, min_id+1];
-    a[i, min_id + 1] = b[i];
+    for (int j = 7; j > 0; j--)
+    {
+        if (j != min_id + 1)
+        {
+            a[i, j] = a[i, j - 1];
+        }
+        else
+        {
+            a[i, j] = b[i];
+            break;
+        }
+    }
 }
 Console.WriteLine("Результат");
 for (int i = 0; i < 5; i++)
