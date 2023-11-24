@@ -1,0 +1,20 @@
+static void fact(int n, out int r)
+{
+    r = 1;
+    for(int i = 1;i<=n;i++)
+    {
+        r=r*i;
+    }
+}
+int k, n1, n2, n3;k = 5;n1 = 8;n2 = 10;n3 = 11;
+int n1_f,n2_f,n3_f,k_f,c1,c2,c3;
+fact(n1, out n1_f);
+fact(n2, out n2_f);
+fact(n3, out n3_f);
+fact(k, out k_f);
+fact(n1-k, out c1);
+fact(n2-k, out c2);
+fact(n3-k, out c3);
+Console.WriteLine("for 8 members {0}",n1_f/(k_f*c1));
+Console.WriteLine("for 10 members {0}", n2_f / (k_f * c2));
+Console.WriteLine("for 11 members {0}", n3_f / (k_f * c3));
