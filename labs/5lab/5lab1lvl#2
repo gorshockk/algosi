@@ -1,0 +1,22 @@
+
+static void plochad(int a,int b,int c,out double S)
+{
+    double p = 0;
+    p = (a + b + c) * 0.5;
+    S = Math.Sqrt(p*(p - a)*(p - b)*(p - c));
+}
+int a,b,c,a_1,b_1,c_1;
+double S1,S2;S1=0;S2 = 0;
+Console.WriteLine("Введи стороны 1-го треугольника");
+a = int.Parse(Console.ReadLine());
+b = int.Parse(Console.ReadLine());
+c = int.Parse(Console.ReadLine());
+Console.WriteLine("Введи стороны 2 - го треугольника");
+a_1 = int.Parse(Console.ReadLine());
+b_1=int.Parse(Console.ReadLine());
+c_1 = int.Parse(Console.ReadLine());
+plochad(a, b, c, out S1);
+plochad(a_1, b_1, c_1,out S2);
+if (S1 > S2) { Console.WriteLine("Первая площадь больше: {0}",S1); }
+if(S2 > S1) { Console.WriteLine("Вторая площадь больше: {0}",S2); }
+if (S2 == S1) { Console.WriteLine("Площади равны"); }
