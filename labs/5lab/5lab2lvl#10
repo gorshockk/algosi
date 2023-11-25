@@ -1,0 +1,53 @@
+static void Del_stolbec(int[,]a,int k,out int[,]b)
+{
+    int f;f = 0;
+    b = new int[a.GetLength(0), a.GetLength(1)-1];
+    for(int i = 0; i < a.GetLength(0); i++)
+    {
+        f = 0;
+        for(int j = 0; j < a.GetLength(1); j++)
+        {
+            if (j != k) { b[i, f] = a[i,j];f++; } 
+        }
+    }
+}
+void print(int[,] a)
+{
+    for (int i = 0; i < a.GetLength(0); i++)
+    {
+        for (int j = 0; j < a.GetLength(1); j++)
+        {
+            Console.Write(a[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+/*----------------------------------------------------------*/
+int[,] matrix = {
+    {1,2,3,-4 },
+    {3,5,9,1 },
+    {5,6,7,1},
+    {40,8,1,2 },
+};
+int max, min, max_id, min_id; max = matrix[0,0]; min = matrix[1,1];max_id = 0;min_id = 0;
+Console.WriteLine("Original matrix:");
+print(matrix);
+for(int i = 0;i < 4;i++)
+{
+    for(int j = 0;j < 4;j++)
+    {
+        if (j <= i)
+        {
+            if (matrix[i, j] > max) { max = matrix[i, j]; max_id = j; }
+        }
+        if (j > i)
+        {
+            if (matrix[i, j] < min) { min = matrix[i, j]; min_id = j; }
+        }
+    }
+}
+Console.WriteLine("Result:");
+Del_stolbec(matrix, max_id, out matrix);
+min_id =min_id-1;
+Del_stolbec(matrix,min_id, out matrix);
+print(matrix);
