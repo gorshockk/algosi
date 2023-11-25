@@ -1,0 +1,90 @@
+static void preobrazovanie(int[,]matrix,out double[,]a )
+{
+    a = new double [matrix.GetLength(0), matrix.GetLength(1)];
+    int []id_str=new int[5];
+    int[] id_stl=new int[5];
+    int[] max_matrix=new int[5];
+    for(int i = 0; i < max_matrix.Length; i++) { max_matrix[i] = matrix[0,0]; }
+///////////////////////////////////////////////////////////////////////////////////////
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            if (matrix[i, j] > max_matrix[0] ) { max_matrix[0] = matrix[i, j]; id_str[0] = i; id_stl[0] = j; }
+        }
+    }
+        for (int h = 1; h < max_matrix.Length;h++)
+    {
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                if (matrix[i, j] > max_matrix[h]&& matrix[i,j] < max_matrix[h-1]) { max_matrix[h] = matrix[i, j]; id_str[h] = i; id_stl[h] = j; }
+            }
+        }
+    }
+    //создаю массив из первых 5 наибольших элементов
+    for(int i=0;i<matrix.GetLength(0); i++)
+    {
+        for(int j=0;j<matrix.GetLength(1); j++)
+        {
+            a[i, j] = (matrix[i, j]) *0.5;
+        }
+    }
+    for(int h=0;h<5;h++)
+    {
+        a[id_str[h], id_stl[h]] = matrix[id_str[h], id_stl[h]] * 2;
+    }
+}
+/*----------------------------------------------*/
+void print(int[,] a)
+{
+    for (int i = 0; i < a.GetLength(0); i++)
+    {
+        for (int j = 0; j < a.GetLength(1); j++)
+        {
+            Console.Write(a[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+void print_1(double[,] a)
+{
+    for (int i = 0; i < a.GetLength(0); i++)
+    {
+        for (int j = 0; j < a.GetLength(1); j++)
+        {
+            Console.Write(a[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+/*----------------------------------------------------------*/
+int[,] matrix = {
+    {1,2,3,-4 },
+    {3,5,9,1 },
+    {5,6,7,1},
+    {5,8,1,2 },
+};
+double[,] a = new double[matrix.GetLength(0), matrix.GetLength(1)];
+int[,] matrix_1 =
+{
+    {4,56,2,5 },
+    {70,3,2,1 },
+    {10,2,-9,4 },
+    {1,20,3,4 }
+};
+double[,] b = new double[matrix_1.GetLength(0), matrix_1.GetLength(1)];
+int[] max_matrix = new int[5];
+Console.WriteLine("Original 1 matrix:");
+print(matrix);
+Console.WriteLine("Original 2 matrix:");
+print(matrix_1);
+preobrazovanie(matrix,out a);
+preobrazovanie(matrix_1,out b);
+Console.WriteLine("result");
+Console.WriteLine("1 matrix:");
+print_1(a);
+Console.WriteLine("2 matrix:");
+print_1(b);
+
