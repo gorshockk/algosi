@@ -1,0 +1,37 @@
+
+static void Del(int[] a,out int[]b)
+{
+    b= new int[a.Length-1];
+    int max = a[0];int id = 0;
+    for(int i=0;i<a.Length;i++)
+    {
+        if (a[i] > max) { max = a[i];id = i; }
+    }
+    int k;k = 0;
+    for (int j = 0; j < a.Length; j++)
+    {
+        if (j != id) { b[k] = a[j]; k++; }
+    }
+}
+int[] a = { 1, 2, 3, 4, 10, 5,7 };
+int[] b = { 1, 34, 66, 2, 4, -4, 1, 10 };
+int[] r = new int[a.Length + b.Length-2];
+Console.WriteLine("Arrays:");
+foreach (int i in a) { Console.Write(i + " "); }
+Console.WriteLine();
+foreach (int i in b) { Console.Write(i + " "); }
+Del(a, out a);
+Del(b, out b);
+for(int i=0;i<a.Length;i++)
+{
+    r[i] = a[i];
+}
+int k;k = 0;
+for (int i = a.Length; i < r.Length; i++)
+{
+    r[i] = b[k];
+    k++;
+}
+Console.WriteLine();
+Console.WriteLine("Result:");
+foreach (int i in r) { Console.Write(i + " "); }
