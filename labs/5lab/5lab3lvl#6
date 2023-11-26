@@ -1,0 +1,70 @@
+using System.Linq.Expressions;
+using System.Runtime.InteropServices;
+
+namespace wwww
+{
+    internal class Program
+    {
+        delegate int max(int[,] matrix);
+        static void print(int[,] a)
+        {
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    Console.Write(a[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        /*--------------------------------------*/
+        static void stolbec(int[,] a,int p,int k) 
+        {
+            int b;
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                b = a[i, p];
+                a[i, p] = a[i, k];
+                a[i, k] = b;
+            }
+        }
+        /*----------------------------*/
+        static int max_diag(int[,] matrix)
+        {
+            int max = matrix[0,0];int max_id = 0;
+            for (int i=0;i<matrix.GetLength(0);i++)
+            {
+                if (matrix[i,i] > max) { max = matrix[i, i];max_id = i; }
+            }
+            return max_id;
+        }
+        static int max_line_1(int[,] matrix)
+        {
+            int max = matrix[0, 0]; int max_id = 0;
+            for (int i = 0; i < matrix.GetLength(1); i++)
+            {
+                if (matrix[0, i] > max) { max = matrix[0, i]; max_id = i; }
+            }
+            return max_id;
+        }
+        /*---------------------------------*/
+        static void Main(string[] args)
+        { 
+            int[,] a = {
+            { 1, 8, 4, 5,99},
+            { 7, 60, 4, 2,3},
+            { 12, 4, 9, 2,10},
+            { -9, 7, 6, 2,3},
+            {1, 2, 3, 4, 5 }
+            };
+            Console.WriteLine("Original matrix");
+            print(a);
+            max max_d = max_diag;
+            max max_line= max_line_1;
+            stolbec(a, max_d(a), max_line(a));
+            Console.WriteLine("Result");
+            print(a);
+
+        }
+    }
+}
