@@ -1,0 +1,125 @@
+using System.Linq.Expressions;
+using System.Runtime.InteropServices;
+
+namespace wwww
+{
+    internal class Program
+    {
+        delegate int[] Sortirovka(int[,] matrix, int i);
+        static void print(int[,] a)
+        {
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    Console.Write(a[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        /*----------------------------*/
+        static void quicksort(int[] a, int left, int right)
+        {
+            if (left < right)
+            {
+                int part = partion(a, left, right);
+                quicksort(a, left, part - 1);
+                quicksort(a, part + 1, right);
+            }
+        }
+        static int partion(int[] a, int left, int right)
+        {
+            int i = left - 1;
+            int pivot = a[right];
+            for (int j = left; j < right; j++)
+            {
+                int k;
+                if (a[j] < pivot) { i++; k = a[i]; a[i] = a[j]; a[j] = k; }
+            }
+            int g;
+            g = a[i + 1];
+            a[i + 1] = pivot;
+            a[right] = g;
+            return i + 1;
+        }
+        /*----------------------------------------------------*/
+        static void quicksort_1(int[] a, int left, int right)
+        {
+            if (left < right)
+            {
+                int part = partion_1(a, left, right);
+                quicksort_1(a, left, part - 1);
+                quicksort_1(a, part + 1, right);
+            }
+        }
+        static int partion_1(int[] a, int left, int right)
+        {
+            int i = left - 1;
+            int pivot = a[right];
+            for (int j = left; j < right; j++)
+            {
+                int k;
+                if (a[j] > pivot) { i++; k = a[i]; a[i] = a[j]; a[j] = k; }
+            }
+            int g;
+            g = a[i + 1];
+            a[i + 1] = pivot;
+            a[right] = g;
+            return i + 1;
+        }
+        /*----------------------------------------------------------------*/
+        static int[] sort_stroki(int[,] matrix, int i)
+        {
+            int[,] a = new int[matrix.GetLength(0), matrix.GetLength(1)];
+            int[] mass = new int[matrix.GetLength(1)];
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                mass[j] = matrix[i, j];
+            }
+            quicksort(mass, 0, mass.Length - 1);
+            return mass;
+        }
+        static int[] sort_stroki_1(int[,] matrix, int i)
+        {
+            int[,] a = new int[matrix.GetLength(0), matrix.GetLength(1)];
+            int[] mass = new int[matrix.GetLength(1)];
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                mass[j] = matrix[i, j];
+            }
+            quicksort_1(mass, 0, mass.Length - 1);
+            return mass;
+        }
+        /*----------------------------------------------------------*/
+        static int[,] method(int[]mass, int[,] matrix,int i)
+        {
+            for(int j=0;j<mass.Length;j++)
+            {
+                matrix[i,j]= mass[j];
+            }
+            return matrix;
+        }
+        /*---------------------------------*/
+        static void Main(string[] args)
+        { 
+            int[,] a = {
+            { 1, 23, 4, 5},
+            { 7, 65, 4, 2},
+            { 12, 4, 6, 2},
+            { 9, 87, 6, 2},
+            };
+            int[] b = new int[4] {1,1,1,1};
+            Console.WriteLine("The original matrix:");
+            print(a);
+            for(int i=0;i<a.GetLength(0);i++)
+            {
+                Sortirovka sort_line = sort_stroki;
+                Sortirovka sort_line_1 = sort_stroki_1;
+                if (i % 2 == 0) {method(sort_line(a,i),a,i);}
+                else { method(sort_line_1(a, i), a, i); }
+            }
+            Console.WriteLine("Result:");
+            print(a);
+        }
+    }
+}
