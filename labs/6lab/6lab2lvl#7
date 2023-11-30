@@ -1,0 +1,57 @@
+
+namespace wwww
+{
+    internal class Program
+    {
+
+
+        struct Chess
+        {
+            public string name;
+            public string []res_s;
+            public double[] res_d=new double[3];
+            public double sum;
+            public Chess(string name_1, string[] res_1)
+            {
+                /*res_d={0,0,0}-почему не могу так сделать и поч нелзя обьявлять res_d локально в методе*/
+                sum = 0;
+                name =name_1;
+                res_s = res_1;
+                for(int i = 0; i < res_s.Length; i++) 
+                { 
+                    if (res_s[i] == "Win") { res_d[i] = 1.0; }
+                    if (res_s[i] == "Draw") { res_d[i] = 0.5; }
+                    if (res_s[i] == "Lose") { res_d[i] = 0.0; }
+                }
+                foreach(double i in res_d) { sum += i; }
+            }
+             
+        }
+        static void Main(string[] args)
+        {
+            Chess[] player = new Chess[4];
+            player[0] = new Chess("Karlson",new string[]{ "Lose", "Lose", "Lose" });
+            player[1] = new Chess("Kinder", new string[] { "Win", "Lose", "Win" });
+            player[2] = new Chess("Kolumb", new string[] { "Draw", "Draw", "Draw" });
+            player[3] = new Chess("Ivanov", new string[] { "Win", "Win", "Win" });
+            Console.WriteLine("Player\t" + "1 game\t" + "2 game\t" + "3 game\t");
+            for (int i = 0; i < 4; i++)
+            {
+                Console.WriteLine("{0}\t" + "{1}\t" + "{2}\t" + "{3}\t", player[i].name, player[i].res_s[0], player[i].res_s[1], player[i].res_s[2]);
+            }
+            for (int i = 0;i < 4; i++)
+                for(int j = 0;j < 4; j++)
+                {
+                    if (player[i].sum > player[j].sum) { Chess k; k = player[i]; player[i] = player[j]; player[j] = k; }
+                }
+            Console.WriteLine();
+            Console.WriteLine("Result:");
+            Console.WriteLine("Player\t" + "1 game\t" + "2 game\t" + "3 game\t");
+            for (int i = 0; i < 4; i++)
+            {
+                Console.WriteLine("{0}\t"+"{1}\t"+ "{2}\t"+ "{3}\t", player[i].name, player[i].res_s[0], player[i].res_s[1], player[i].res_s[2]);
+            }
+        }
+        
+    }
+}
