@@ -1,0 +1,46 @@
+
+namespace wwww
+{
+    internal class Program
+    {
+
+
+        struct Student
+        {
+            public string name;
+            public double sred;
+            public double[] results;
+            public Student(string name_1, double[] results_1)
+            {
+                sred = 0;
+                name = name_1;
+                results = results_1;
+                foreach (double i in results) { sred += i; }
+                sred = sred / 4.0;
+            }
+            static void Main(string[] args)
+            {
+                Student[] s = new Student[4];
+                s[0] = new Student("Azonov", new double[] { 3.2, 4.5, 4.1, 5.0 });
+                s[1] = new Student("Gutaev", new double[] { 4.1, 5.0, 2.1, 5.0 });
+                s[2] = new Student("Ivanov", new double[] { 3.2, 3.5, 2.1, 4.0 });
+                s[3] = new Student("Azonon", new double[] { 2.2, 4.3, 4.1, 4.7 });
+                Console.WriteLine("All students:");
+                for (int i = 0; i < 4; i++)
+                {
+                    Console.WriteLine("Фамилия:{0}\t" + "Средний балл:{1:f2}", s[i].name, s[i].sred);
+                }
+                for (int i = 0; i < 4; i++)
+                    for (int j = i + 1; j < 4; j++)
+                    {
+                        if (s[i].sred < s[j].sred) { Student f; f = s[i]; s[i] = s[j]; s[j] = f; }
+                    }
+                Console.WriteLine("Result:");
+                for (int i = 0; i < 4; i++)
+                {
+                    if (s[i].sred>4){ Console.WriteLine("Фамилия:{0}\t" + "Средний балл:{1:f2}", s[i].name, s[i].sred); }
+                }
+            }
+        }
+    }
+}
