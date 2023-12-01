@@ -4,7 +4,7 @@ void  BubbleSort(int[]a,int i,int j)
         {
             for (int m = l + 1; m < j; m++)
             {
-                if (a[i, l] < a[i, m]) { int k; k = a[i, l]; a[i, l] = a[i, m]; a[i, m] = k; }
+                if (a[l] < a[m]) { int k; k = a[l]; a[l] = a[m]; a[m] = k; }
             }
         }
 }
