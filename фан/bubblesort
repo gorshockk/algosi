@@ -1,8 +1,8 @@
-void  BubbleSort(int[,]a,int i,int j)
+void  BubbleSort(int[]a,int i,int j)
 {
-        for (int l = 0; l < j; l+=2)
+        for (int l = 0; l < j; l++)
         {
-            for (int m = l + 2; m < j; m+=2)
+            for (int m = l + 1; m < j; m++)
             {
                 if (a[i, l] < a[i, m]) { int k; k = a[i, l]; a[i, l] = a[i, m]; a[i, m] = k; }
             }
