@@ -1,5 +1,6 @@
 
-namespace wwww
+
+namespace labs
 {
     internal class Program
     {
@@ -8,38 +9,85 @@ namespace wwww
             public double sum;
             public double[] results;
             public string surname;
-            public res_group(string surname_1, double[]results_1)
+            public res_group(string surname_1, double[] results_1)
             {
                 sum = 0.0;
                 surname = surname_1;
                 results = results_1;
-                for(int i = 0; i < 5; i++) { sum += results[i]; }
+                for (int i = 0; i < 5; i++) { sum += results[i]; }
             }
         }
+        struct average
+          {
+            public res_group[] x;
+            public double average_group;
+             public average(res_group[] a)
+             {
+                    average_group = 0.0;
+                    x = a;
+                    average_group += a[0].sum + a[1].sum + a[2].sum;
+                    average_group = average_group / 15.0;
+              }
+            
+            }
+        
         static void Main(string[] args)
         {
-            res_group[] a = new res_group[3];
-            a[0]=new res_group("Ivanov",new double[] {2.0,3.0,4.5,5.0,3.5 });
+            res_group[] a = new res_group[3];//3,86-avearge
+            a[0] = new res_group("Ivanov", new double[] { 2.0, 3.0, 4.5, 5.0, 3.5 });
             a[1] = new res_group("Dervov", new double[] { 2.2, 3.4, 4.5, 4.9, 3.8 });
-            a[2] = new res_group("Tony Stark", new double[] { 5.0, 3.5, 4.5, 4.0, 4.5 });
-            res_group[] b = new res_group[3];
+            a[2] = new res_group("Stark", new double[] { 5.0, 3.5, 4.5, 4.0, 4.5 });
+            res_group[] b = new res_group[3];//3,79-average
             b[0] = new res_group("Kalatushkin", new double[] { 2.4, 4.0, 4.5, 4.0, 4.5 });
-            b[1] = new res_group("Pushkin", new double[] { 3.2, 3.4, 3.5, 3.9, 3.9 });
+            b[1] = new res_group("AS  Pushkin", new double[] { 3.2, 3.4, 3.5, 3.9, 3.9 });
             b[2] = new res_group("Dostoevskiy", new double[] { 2.0, 3.5, 4.5, 5.0, 4.6 });
-            res_group[] c = new res_group[3];
-            c[0] = new res_group("Tolstoi", new double[] { 2.7, 2.0, 2.5, 2.0, 2.5 });
+            res_group[] c = new res_group[3];//3,67-average
+            c[0] = new res_group("Tolstoy  ", new double[] { 4.7, 4.0, 4.5, 4.0, 4.5 });
             c[1] = new res_group("Bolkonskiy", new double[] { 5.0, 5.0, 5.0, 4.9, 5.0 });
-            c[2] = new res_group("Karamazov", new double[] { 4.0, 4.5, 2.5, 3.7, 3.8 });
-            double average_a,average_b,average_c;average_a = 0;average_b=0;average_c=0;
-            for(int i = 0;i<3;i++) { average_a += a[i].sum; }
-            average_a = average_a/15;
-            for (int i = 0; i < 3; i++) { average_b += b[i].sum; }
-            average_b = average_b / 15;
-            for (int i = 0; i < 3; i++) { average_c += c[i].sum; }
-            average_c = average_c / 15;
-            Console.WriteLine("1st group\t" + "2nd group\t" + "3rd group\t");
-
+            c[2] = new res_group("Karamazov", new double[] { 5.0, 4.5, 4.5, 4.7, 4.8 });
+            Console.WriteLine("1st group");
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Surname:{0}\t" + "Sum of result:{1}\t", a[i].surname, a[i].sum);
+            }
+            Console.WriteLine("2nd group");
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Surname:{0}\t" + "Sum of result:{1}\t", b[i].surname, b[i].sum);
+            }
+            Console.WriteLine("3rd group");
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Surname:{0}\t" + "Sum of result:{1}\t", c[i].surname, c[i].sum);
+            }
+            Console.WriteLine("Result:");
+            average[] f = new average[3];
+            f[0] = new average(c);
+            f[1] = new average(b);
+            f[2] = new average(a);
+            for (int l = 0; l < 3; l++)
+            {
+                for (int m = l + 1; m < 3; m++)
+                {
+                    if (f[l].average_group < f[m].average_group) { average k;k = f[l]; f[l] = f[m]; f[m] = k; }
+                }
+            }
+            Console.WriteLine("The best group average mark with total average:{0:f2}", f[0].average_group);
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Surname:{0}\t" + "Sum of result:{1}\t", f[0].x[i].surname, f[0].x[i].sum);
+            }
+            Console.WriteLine("The second one group average mark with total average:{0:f2}", f[1].average_group);
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Surname:{0}\t" + "Sum of result:{1}\t", f[1].x[i].surname, f[1].x[i].sum);
+            }
+            Console.WriteLine("The worst group average mark with total average:{0:f2}", f[2].average_group);
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Surname:{0}\t" + "Sum of result:{1}\t", f[2].x[i].surname, f[2].x[i].sum);
+            }
         }
-        
+
     }
 }
