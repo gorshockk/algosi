@@ -1,0 +1,63 @@
+
+namespace wwww
+{
+    internal class Program
+    {
+        struct sportiki
+        {
+            public string name;
+            public double res;
+            public sportiki(string name_1,double res_1)
+            {
+                name = name_1;
+                res = res_1;
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            sportiki[] a = new sportiki[3];
+            a[0] = new sportiki("Messi", 9);
+            a[1] = new sportiki("Habib", 99);
+            a[2] = new sportiki("Eminem", 8);
+            for (int l = 0; l < 3; l++)
+            {
+                for (int m = l + 1; m < 3; m++)
+                {
+                    if (a[l].res > a[m].res) { sportiki k; k = a[l]; a[l] = a[m]; a[m] = k; }
+                }
+            }
+            Console.WriteLine("First Group");
+            for(int i=0; i < 3; i++) { Console.WriteLine("Name:{0}\t" + "Result:{1}\t", a[i].name, a[i].res); }
+            sportiki[] b = new sportiki[3];
+            b[0] = new sportiki("Pedro", 56);
+            b[1] = new sportiki("Tyson", 4);
+            b[2] = new sportiki("Kolobok", 100);
+            for (int l = 0; l < 3; l++)
+            {
+                for (int m = l + 1; m < 3; m++)
+                {
+                    if (b[l].res > b[m].res) { sportiki k; k = b[l]; b[l] = b[m]; b[m] = k; }
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("Second Group");
+            for (int i = 0; i < 3; i++) { Console.WriteLine("Name:{0}\t" + "Result:{1}\t", b[i].name, b[i].res); }
+            sportiki []final= new sportiki[a.Length+b.Length];
+            for (int i = 0; i < a.Length; i++) { final[i] = a[i]; }
+            int j = 0;
+            for (int i=a.Length;i<final.Length;i++) { final[i] = b[j];j++; }
+            for (int l = 0; l < 6; l++)
+            {
+                for (int m = l + 1; m < 6; m++)
+                {
+                    if (final[l].res > final[m].res) { sportiki k; k = final[l]; final[l] = final[m]; final[m] = k; }
+                }
+            }
+            Console.WriteLine() ;
+            Console.WriteLine("Result:") ;
+            for (int i = 0; i < 6; i++) { Console.WriteLine("Name:{0}\t" + "Result:{1}\t", final[i].name, final[i].res); }
+        }
+        
+    }
+}
