@@ -1,0 +1,116 @@
+
+namespace wwww
+{
+    internal class Program
+    {
+       struct answers
+        {
+            public string a, b, c;
+            public answers(string a_1,string b_1,string c_1)
+            {
+                a= a_1;b= b_1;c= c_1;
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            answers[] a = new answers[8];
+            a[0] = new answers("Cat","Hapiness","Flower");
+            a[1] = new answers("Dog", "Strictness", "Sakura");
+            a[2] = new answers("Panda", "Discipline", "Sakura");
+            a[3] = new answers("Panda", "Discipline", "Sakura");
+            a[4] = new answers("Panda", "Strictness", "Katana");
+            a[5] = new answers("Cat", "Discipline", "Katana");
+            a[6] = new answers("Fish", "Sadness", "Sakura");
+            a[7] = new answers("Bird", "Discipline", "Katana");
+            /*-------------------------------------------------------------------------------------------*/
+            string[]ans_1=new string[8];
+            int flag = 0;
+            int k = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                flag = 0;
+                for(int j = 0; j < 8; j++) { if (ans_1[j] == a[i].a) { flag = 1; } }
+                if (flag == 0) { ans_1[k] = a[i].a;k++; }
+            }
+            string[]b_ans_1=new string[8];for(int i = 0;i < 8; i++) { b_ans_1[i] = a[i].a; }
+            int[]count_ans_1=new int[k];
+            for(int i = 0; i < k; i++) { count_ans_1[i] = b_ans_1.Count(s => s == ans_1[i]); }
+            for (int l = 0; l < k; l++)
+            {
+                for (int m = l + 1; m < k; m++)
+                {
+                    if (count_ans_1[l] < count_ans_1[m]) 
+                    { 
+                        int t; t = count_ans_1[l]; count_ans_1[l] = count_ans_1[m]; count_ans_1[m] = t;
+                        string word;word= ans_1[l]; ans_1[l] = ans_1[m]; ans_1[m] = word;
+                    }
+                }
+            }
+            Console.WriteLine("5 most popular answers on the first question:");
+            for (int i = 0;i<k;i++)
+            {
+                Console.WriteLine("{0} with {1} %", ans_1[i], count_ans_1[i] * 1.00 / b_ans_1.Length*100);
+            }
+            /*-----------------------------------------------------------------------------------------------*/
+            string[] ans_2 = new string[8];
+            int flag_2 = 0;
+            int k_2 = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                flag_2 = 0;
+                for (int j = 0; j < 8; j++) { if (ans_2[j] == a[i].b) { flag_2 = 1; } }
+                if (flag_2 == 0) { ans_2[k_2] = a[i].b; k_2++; }
+            }
+            string[] b_ans_2 = new string[8]; for (int i = 0; i < 8; i++) { b_ans_2[i] = a[i].b; }
+            int[] count_ans_2 = new int[k_2];
+            for (int i = 0; i < k_2; i++) { count_ans_2[i] = b_ans_2.Count(s => s == ans_2[i]); }
+            for (int l = 0; l < k_2; l++)
+            {
+                for (int m = l + 1; m < k_2; m++)
+                {
+                    if (count_ans_2[l] < count_ans_2[m])
+                    {
+                        int t; t = count_ans_2[l]; count_ans_2[l] = count_ans_2[m]; count_ans_2[m] = t;
+                        string word; word = ans_2[l]; ans_2[l] = ans_2[m]; ans_2[m] = word;
+                    }
+                }
+            }
+            Console.WriteLine("5 most popular answers on the second question:");
+            for (int i = 0; i < k_2; i++)
+            {
+                Console.WriteLine("{0} with {1} %", ans_2[i], count_ans_2[i] * 1.00 / b_ans_2.Length * 100);
+            }
+            /*---------------------------------------------------------------------------------------------------------*/
+            string[] ans_3 = new string[8];
+            int flag_3 = 0;
+            int k_3 = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                flag_3 = 0;
+                for (int j = 0; j < 8; j++) { if (ans_3[j] == a[i].c) { flag_3 = 1; } }
+                if (flag_3 == 0) { ans_3[k_3] = a[i].c; k_3++; }
+            }
+            string[] b_ans_3 = new string[8]; for (int i = 0; i < 8; i++) { b_ans_3[i] = a[i].c; }
+            int[] count_ans_3 = new int[k_3];
+            for (int i = 0; i < k_3; i++) { count_ans_3[i] = b_ans_3.Count(s => s == ans_3[i]); }
+            for (int l = 0; l < k_3; l++)
+            {
+                for (int m = l + 1; m < k_3; m++)
+                {
+                    if (count_ans_3[l] < count_ans_3[m])
+                    {
+                        int t; t = count_ans_3[l]; count_ans_3[l] = count_ans_3[m]; count_ans_3[m] = t;
+                        string word; word = ans_3[l]; ans_3[l] = ans_3[m]; ans_3[m] = word;
+                    }
+                }
+            }
+            Console.WriteLine("5 most popular answers on the third question:");
+            for (int i = 0; i < k_3; i++)
+            {
+                Console.WriteLine("{0} with {1} %", ans_3[i], count_ans_3[i] * 1.00 / b_ans_3.Length * 100);
+            }
+        }
+
+    }
+}
