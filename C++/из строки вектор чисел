@@ -1,0 +1,11 @@
+int main() 
+{
+	string s = "1 2 3 4";
+	vector<int> a;
+	istringstream iss(s);
+	int x;
+	while (iss >> x)
+	{
+		a.push_back(x);
+	}
+}
