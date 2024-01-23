@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+enum class Fruits {
+    Orange,
+    Apple,
+    Pineapple,
+};
+struct object {
+    Fruits product;
+    int price = 2;
+    int weight = 3;
+    int sum = 10;
+};
+int main()
+{
+    object a = { Fruits::Orange,4,7,12 };
+    cout << a.sum;
+}
