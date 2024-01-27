@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>;
+using namespace std;
+struct name
+{
+	string a, b, c;
+};
+int main()
+{
+	name lohi = {"Sasha","Fedya","Me"};
+	name* ssilca_lohov = &lohi;
+	int age = 18;
+	int* age_ssilca = &age;
+	*age_ssilca = *age_ssilca * 2;
+	cout << age<<" " << ssilca_lohov->a;//"age" change too/-> just for beauty
+	//*&-обратные друг другу штуки.*(ссылка переменной)-помогает обратиться к знач в ссылке на переменную.&(переменная)-делает из переменной ссылку.
+}
+
