@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include<vector>
+#include <utility>
+#include<math.h>
+#include <algorithm>
+using namespace std;
+
+bool opa (const pair<int,int>& lhs,const pair<int,int>& rhs )
+{
+ return sqrt(pow(lhs.first, 2) + pow(lhs.second, 2)) < sqrt(pow(rhs.first, 2) + pow(rhs.second, 2)); 
+}
+
+int main()
+{
+	int n;
+	cin >> n;
+	vector<pair<int, int>> a;
+	for (size_t i = 0; i < n; i++)
+	{
+		pair<int,int> p;
+		cin >> p.first >> p.second;
+		a.push_back(p);
+	}
+	cout << endl;
+	sort(a.begin(),a.end(),opa );
+	for (const auto& i : a)
+	{
+		cout << i.first << " " << i.second;
+		cout << endl;
+	}
+}
