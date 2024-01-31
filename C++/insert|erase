@@ -1,0 +1,24 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <list>
+using namespace std;
+
+
+
+int main() 
+{
+    list<int>a = {1,2,3,10};
+    auto iter = a.begin();
+    iter++;//указывает на 2
+    //a.insert(iter,100);//вот так добавит элемент в лист
+    //iter=a.insert(iter,100);//вот так добавит элемент и еще вернет итератор который указывает на добавленный элемент
+    //a.erase(iter);//просто удалит 10
+    iter = a.erase(iter);//удалит элемент находящийся на этом итераторе(в листе это 2) и вернет следующий после этого эл-та итератор(в данном случае-3_
+    for(const auto& i:a)
+    {
+        cout << i << " ";
+    }
+    cout << endl;
+    cout << *iter;
+}
